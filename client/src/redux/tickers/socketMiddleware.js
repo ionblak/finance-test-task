@@ -3,9 +3,7 @@ import {
   socketInitSuccess,
   socketInitRequest,
 } from './tickers-actions';
-import io from 'socket.io-client';
-const socket = io('http://localhost:4000');
-
+import socket from '../../utils/socket';
 const fetchTickers = () => dispatch => {
   dispatch(socketInitRequest());
   socket.emit('start');

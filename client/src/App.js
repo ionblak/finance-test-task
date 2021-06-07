@@ -20,7 +20,7 @@ function App() {
       <header className="App-header"></header>
       <ul>
         {value.map(item => (
-          <li>
+          <li key={item.ticker}>
             {item.ticker}
             <span>{item.price}</span>
           </li>
