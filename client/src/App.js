@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+// import io from 'socket.io-client';
+// const socket = io('http://localhost:4000');
+// socket.emit('start');
+// socket.on('ticker', data => console.log(data));
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchTickers } from './redux/tickers/socketMiddleware';
+import { getTickkers } from './redux/tickers/tickers-selectors';
 
 function App() {
+  const value = useSelector(getTickkers);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTickers());
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header className="App-header"></header>
+      <ul>
+        {value.map(item => (
+          <li>
+            {item.ticker}
+            <span>{item.price}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
