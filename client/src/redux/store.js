@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import reducer from './tickers/reducer';
+import reducer from './tickers/tickers-reducers';
 
 const middleware = [
   ...getDefaultMiddleware({

@@ -4,6 +4,7 @@ import {
   socketInitRequest,
 } from './tickers-actions';
 import socket from '../../utils/socket';
+
 const fetchTickers = () => dispatch => {
   dispatch(socketInitRequest());
   socket.emit('start');
