@@ -96,7 +96,7 @@ describe('testing operations', () => {
     const store = mockStore({ tickers: 'connect', isConnected: false });
 
     store.dispatch(fetchTickers());
-    // return of async actions
+
     expect(store.getState()).toMatchObject(expected);
   });
 });
