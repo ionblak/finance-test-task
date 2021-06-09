@@ -2,8 +2,6 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import SocketMock from 'socket.io-mock';
 
-// import fetchMock from 'fetch-mock';
-
 import {
   socketInitSuccess,
   socketInitRequest,
@@ -85,11 +83,11 @@ const mockStore = configureMockStore(middlewares);
 describe('testing operations', () => {
   let socket = new SocketMock();
 
-  it('fetchTickers should return  a new object', async () => {
-    await socket.on('ticker', function (data) {
+  it('fetchTickers should return  state', () => {
+    socket.on('ticker', function (data) {
       expect(data).toBe('connect');
     });
-    await socket.socketClient.emit('ticker', 'connect');
+    socket.socketClient.emit('ticker', 'connect');
 
     const expected = {
       tickers: 'connect',
@@ -97,7 +95,7 @@ describe('testing operations', () => {
     };
     const store = mockStore({ tickers: 'connect', isConnected: false });
 
-    await store.dispatch(fetchTickers());
+    store.dispatch(fetchTickers());
     // return of async actions
     expect(store.getState()).toMatchObject(expected);
   });
