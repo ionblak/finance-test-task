@@ -3,23 +3,22 @@ import { useEffect } from 'react';
 import './App.css';
 import { fetchTickers } from './redux/tickers/tickers-operations';
 
-import Header from './Components/Header';
 import Container from './Components/Container';
-import Table from './Components/Table';
+import TableComponent from './Components/TableComponent';
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchTickers());
   }, [dispatch]);
 
   return (
-    <>
-      <Header />
+    <div>
       <Container>
-        <Table />
+        <TableComponent />
       </Container>
-    </>
+    </div>
   );
 }
 
